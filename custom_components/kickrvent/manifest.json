@@ -1,0 +1,20 @@
+{
+  "domain": "kickrvent",
+  "name": "KickrVent",
+  "version": "0.1.0",
+  "config_flow": true,
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "requirements": [],
+  "dependencies": [
+    "zeroconf"
+  ],
+  "codeowners": [
+    "@mightymax"
+  ],
+  "zeroconf": [
+    "_wahoo-fitness-tnp._tcp.local."
+  ],
+  "documentation": "https://github.com/mightymax/hacs-kickrvent",
+  "issue_tracker": "https://github.com/mightymax/hacs-kickrvent/issues"
+}

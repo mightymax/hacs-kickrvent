@@ -1,0 +1,71 @@
+{
+  "title": "KickrVent",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbind je KICKR",
+        "description": "Verbind via je lokale netwerk. Alleen uitlezen; de weerstand wordt niet gewijzigd. Serienummer is alleen nodig als de trainer dit niet zelf doorgeeft.",
+        "data": {
+          "host": "IP-adres of hostnaam",
+          "port": "TCP-poort",
+          "name": "Naam",
+          "serial": "Serienummer (terugvaloptie)"
+        }
+      },
+      "reconfigure": {
+        "title": "KICKR-verbinding aanpassen",
+        "description": "Het serienummer moet overeenkomen met de bestaande trainer.",
+        "data": {
+          "host": "IP-adres of hostnaam",
+          "port": "TCP-poort",
+          "name": "Naam",
+          "serial": "Serienummer (terugvaloptie)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan niet verbinden. Controleer de trainer, het adres en de poort.",
+      "unsupported_device": "Geen ondersteunde meetgegevens of een ongeldig DIRCON-antwoord.",
+      "serial_required": "Vul het serienummer van het trainerlabel in; de trainer gaf dit niet door."
+    },
+    "abort": {
+      "already_configured": "Deze trainer is al ingesteld.",
+      "unique_id_mismatch": "Dit is een andere trainer. Het serienummer moet overeenkomen.",
+      "reconfigure_successful": "Verbindingsinstellingen bijgewerkt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Instellingen meetdata",
+        "description": "Gewijzigde waarden worden maximaal eens per interval gepubliceerd. Verouderde waarden worden onbeschikbaar, niet nul.",
+        "data": {
+          "publish_interval": "Publicatie-interval (2–60 seconden)",
+          "stale_timeout": "Geldigheid meetgegevens (15–300 seconden)",
+          "sleep_timeout": "Activiteitstimeout (5–120 seconden)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "speed": {
+        "name": "Snelheid"
+      },
+      "power": {
+        "name": "Vermogen"
+      },
+      "cadence": {
+        "name": "Cadans"
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Verbinding"
+      },
+      "active": {
+        "name": "Activiteit"
+      }
+    }
+  }
+}

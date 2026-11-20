@@ -1,0 +1,2 @@
+# Test environment only: wheel support for modern Python on the local macOS SDK.
+lru-dict==1.4.1

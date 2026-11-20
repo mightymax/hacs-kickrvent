@@ -1,0 +1,71 @@
+{
+  "title": "KickrVent",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect your KICKR",
+        "description": "Connect over your local network. The trainer is only monitored; resistance is never changed. Serial number is optional unless the trainer does not report one.",
+        "data": {
+          "host": "IP address or hostname",
+          "port": "TCP port",
+          "name": "Name",
+          "serial": "Serial number (fallback)"
+        }
+      },
+      "reconfigure": {
+        "title": "Update KICKR connection",
+        "description": "The serial number must match the existing trainer.",
+        "data": {
+          "host": "IP address or hostname",
+          "port": "TCP port",
+          "name": "Name",
+          "serial": "Serial number (fallback)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect. Check the trainer, address and port.",
+      "unsupported_device": "No supported measurements or invalid DIRCON response.",
+      "serial_required": "Enter the serial number from the trainer label; it was not reported by the device."
+    },
+    "abort": {
+      "already_configured": "This trainer is already configured.",
+      "unique_id_mismatch": "This is a different trainer. The serial number must match.",
+      "reconfigure_successful": "Connection settings updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Telemetry settings",
+        "description": "Changed values are published at this interval. Stale readings become unavailable, not zero.",
+        "data": {
+          "publish_interval": "Publish interval (2–60 seconds)",
+          "stale_timeout": "Measurement freshness timeout (15–300 seconds)",
+          "sleep_timeout": "Activity timeout (5–120 seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "speed": {
+        "name": "Speed"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "cadence": {
+        "name": "Cadence"
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Connection"
+      },
+      "active": {
+        "name": "Activity"
+      }
+    }
+  }
+}
