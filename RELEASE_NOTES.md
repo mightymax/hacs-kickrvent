@@ -1,11 +1,9 @@
-## KickrVent 0.1.1
+## KickrVent 0.1.2
 
-- Setup now actively searches for WFTNP trainers using Home Assistant’s shared mDNS instance.
-- Select a discovered trainer without typing its IP address, port or serial number.
-- Scan again or fall back to manual configuration when discovery cannot reach a device.
-- HA-discovered trainers now use a simple confirmation step.
-- Discovery is bounded and cancels its browser on completion or cancellation.
+- Ship the KickrVent icon and high-resolution variant inside `custom_components/kickrvent/brand/`, so Home Assistant 2026.3+ can display them in integration cards and update lists.
+- Include and validate PNG brand assets in the manual installation ZIP.
+- Keep the repository-level branding for the README and marketplace metadata.
 
-Validated with HA 2026.2.3 and 2026.10.4 test environments. The scan also found a physical KICKR v6 and resolved its address, port and serial number. Cross-VLAN discovery still requires mDNS forwarding or manual setup.
+Update through HACS/Marketplace and restart Home Assistant. Refresh the browser if it still shows the cached placeholder. Older HACS versions that use the remote brands CDN rather than HA’s local brand endpoint may still show a placeholder in HACS itself.
 
-Update in HACS/Marketplace, restart Home Assistant, then start a new KickrVent setup flow.
+No telemetry or connection behaviour changed.

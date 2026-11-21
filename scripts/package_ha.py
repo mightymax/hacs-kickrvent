@@ -26,12 +26,17 @@ def main() -> None:
             raise ValueError(f"Missing release metadata: {key}")
     if not (ROOT / "brand" / "icon.png").is_file():
         raise ValueError("Missing HACS brand/icon.png")
-    files = sorted(p for p in COMPONENT.rglob("*") if p.is_file() and p.suffix in (".py", ".json"))
+    for name in ("icon.png", "icon@2x.png"):
+        if not (COMPONENT / "brand" / name).is_file():
+            raise ValueError(f"Missing installed brand image: {name}")
+    files = sorted(p for p in COMPONENT.rglob("*") if p.is_file() and p.suffix in (".py", ".json", ".png"))
     for path in files:
         if path.suffix == ".json":
             json.loads(path.read_text())
-        else:
+        elif path.suffix == ".py":
             compile(path.read_text(), str(path), "exec")
+        elif path.read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
+            raise ValueError(f"Invalid PNG: {path}")
     strings = json.loads((COMPONENT / "strings.json").read_text())
     for language in ("en", "nl"):
         translated = json.loads((COMPONENT / "translations" / f"{language}.json").read_text())

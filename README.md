@@ -74,7 +74,7 @@ Use **Reconfigure** in the integration menu to change the address later. The ser
 <details>
 <summary><strong>Manual installation without HACS</strong></summary>
 
-Download `kickrvent-0.1.1.zip` from the [release page](https://github.com/mightymax/hacs-kickrvent/releases/latest) and extract it into your HA configuration directory. The resulting path must be:
+Download `kickrvent-0.1.2.zip` from the [release page](https://github.com/mightymax/hacs-kickrvent/releases/latest) and extract it into your HA configuration directory. The resulting path must be:
 
 ```text
 config/
