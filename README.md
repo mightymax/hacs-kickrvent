@@ -60,7 +60,7 @@ After downloading and restarting:
 
 [![Set up KickrVent](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=kickrvent)
 
-Alternatively, go to **Settings → Devices & services → Add integration → KickrVent**. A compatible trainer may also appear automatically via mDNS discovery.
+Alternatively, go to **Settings → Devices & services → Add integration → KickrVent**. Setup scans your network for three seconds and lets you select a discovered trainer, without typing an address or serial number. Choose **Scan again** to refresh or **Enter address manually** if discovery cannot reach your trainer. A trainer discovered by HA itself only needs confirmation.
 
 | Field | What to enter |
 | --- | --- |
@@ -74,7 +74,7 @@ Use **Reconfigure** in the integration menu to change the address later. The ser
 <details>
 <summary><strong>Manual installation without HACS</strong></summary>
 
-Download `kickrvent-0.1.0.zip` from the [release page](https://github.com/mightymax/hacs-kickrvent/releases/latest) and extract it into your HA configuration directory. The resulting path must be:
+Download `kickrvent-0.1.1.zip` from the [release page](https://github.com/mightymax/hacs-kickrvent/releases/latest) and extract it into your HA configuration directory. The resulting path must be:
 
 ```text
 config/

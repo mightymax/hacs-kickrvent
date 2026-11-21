@@ -2,6 +2,7 @@
 
 import asyncio
 import struct
+from unittest.mock import patch
 from contextlib import asynccontextmanager, suppress
 from dataclasses import dataclass, field
 from uuid import UUID
@@ -15,7 +16,8 @@ from custom_components.kickrvent.protocol import BIKE, CPS, DIS, FTMS, MODEL, PO
 def custom_integrations(
     enable_custom_integrations, socket_enabled, mock_zeroconf, mock_async_zeroconf
 ):
-    yield
+    with patch("custom_components.kickrvent.config_flow.async_discover", return_value={}):
+        yield
 
 
 @dataclass

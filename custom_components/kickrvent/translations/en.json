@@ -3,13 +3,10 @@
   "config": {
     "step": {
       "user": {
-        "title": "Connect your KICKR",
-        "description": "Connect over your local network. The trainer is only monitored; resistance is never changed. Serial number is optional unless the trainer does not report one.",
+        "title": "Choose your KICKR",
+        "description": "Select a discovered trainer. No trainer found? Turn it on, check your network and scan again, or enter the address manually.",
         "data": {
-          "host": "IP address or hostname",
-          "port": "TCP port",
-          "name": "Name",
-          "serial": "Serial number (fallback)"
+          "device": "Trainer"
         }
       },
       "reconfigure": {
@@ -21,6 +18,20 @@
           "name": "Name",
           "serial": "Serial number (fallback)"
         }
+      },
+      "manual": {
+        "title": "Connect your KICKR",
+        "description": "Connect over your local network. The trainer is only monitored; resistance is never changed. Serial number is optional unless the trainer does not report one.",
+        "data": {
+          "host": "IP address or hostname",
+          "port": "TCP port",
+          "name": "Name",
+          "serial": "Serial number (fallback)"
+        }
+      },
+      "discovery_confirm": {
+        "title": "Add discovered KICKR",
+        "description": "Add {name}? Its network address and serial number have been detected automatically."
       }
     },
     "error": {
@@ -65,6 +76,14 @@
       },
       "active": {
         "name": "Activity"
+      }
+    }
+  },
+  "selector": {
+    "trainer": {
+      "options": {
+        "__rescan__": "Scan again",
+        "__manual__": "Enter address manually"
       }
     }
   }

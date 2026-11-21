@@ -1,13 +1,13 @@
 # KickrVent voor Home Assistant
 
-Eigen, lokale **alleen-lezen** integratie voor een wifi-KICKR via WFTNP/DIRCON. Ontwikkelversie 0.1.0. Het is een nieuwe implementatie op basis van de protocolbeschrijving en onze TS-PoC, geen fork van `hacs-wahoo-wftnp`.
+Eigen, lokale **alleen-lezen** integratie voor een wifi-KICKR via WFTNP/DIRCON. Ontwikkelversie 0.1.1. Het is een nieuwe implementatie op basis van de protocolbeschrijving en onze TS-PoC, geen fork van `hacs-wahoo-wftnp`.
 
 ## Installatie
 
-1. Pak `artifacts/kickrvent-0.1.0.zip` uit in de configuratiemap van Home Assistant. Het resultaat moet **`config/custom_components/kickrvent/manifest.json`** zijn. Geen extra tussenmap `KickrVent` of `custom_components/custom_components`.
+1. Pak `artifacts/kickrvent-0.1.1.zip` uit in de configuratiemap van Home Assistant. Het resultaat moet **`config/custom_components/kickrvent/manifest.json`** zijn. Geen extra tussenmap `KickrVent` of `custom_components/custom_components`.
 2. Herstart Home Assistant om de nieuwe integratie te laden.
 3. Ga naar **Instellingen → Apparaten & diensten → Integratie toevoegen → KickrVent**, of gebruik de automatisch ontdekte trainer.
-4. Vul host/IP en TCP-poort in. De standaardpoort is **36866**; automatische ontdekking neemt de geadverteerde poort over.
+4. Kies je trainer uit de lijst na de automatische netwerkscan. Adres, poort en serienummer worden overgenomen. Je kunt ook opnieuw zoeken of handmatig een adres invoeren. De standaardpoort is **36866**.
 5. Het serienummer wordt bij voorkeur uit de trainer gelezen. Als de trainer dit niet levert, gebruik het serienummer op het label (of de mDNS-advertentie) in het optionele veld. Dit vormt de blijvende identiteit; verander het niet wanneer alleen het IP-adres wijzigt.
 
 Zet voor de eerste test de bestaande Wahoo-integratie uit en stop eventuele verbindingen vanuit de TS-PoC. Test vervolgens opnieuw met ROUVY actief. 

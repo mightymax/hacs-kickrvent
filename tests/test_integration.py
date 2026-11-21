@@ -20,6 +20,10 @@ async def test_setup_flow_options_and_duplicate(hass, trainer):
     result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": SOURCE_USER})
     assert result["type"] == "form"
     assert result["step_id"] == "user"
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"], {"device": "__manual__"}
+    )
+    assert result["step_id"] == "manual"
     inputs = {"host": "127.0.0.1", "port": trainer.port, "name": "My KICKR"}
     with patch("custom_components.kickrvent.async_setup_entry", return_value=True):
         result = await hass.config_entries.flow.async_configure(result["flow_id"], inputs)
@@ -27,9 +31,11 @@ async def test_setup_flow_options_and_duplicate(hass, trainer):
     assert result["type"] == "create_entry"
     entry = result["result"]
     assert entry.unique_id == trainer.serial.casefold()
-    result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": SOURCE_USER}, data=inputs
+    result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": SOURCE_USER})
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"], {"device": "__manual__"}
     )
+    result = await hass.config_entries.flow.async_configure(result["flow_id"], inputs)
     assert result["type"] == "abort"
     assert result["reason"] == "already_configured"
     result = await hass.config_entries.options.async_init(entry.entry_id)
@@ -198,3 +204,38 @@ async def test_zeroconf_updates_host_without_creating_duplicate(hass, trainer):
     assert result["reason"] == "already_configured"
     assert entry.data["host"] == "127.0.0.1"
     assert entry.data["port"] == trainer.port
+
+
+async def test_user_selects_discovered_trainer_without_entering_address(hass, trainer):
+    from custom_components.kickrvent.discovery import DiscoveredTrainer
+
+    device = DiscoveredTrainer("KICKR test", "127.0.0.1", trainer.port, trainer.serial)
+    with patch(
+        "custom_components.kickrvent.config_flow.async_discover", return_value={"test": device}
+    ):
+        result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": SOURCE_USER})
+    with patch("custom_components.kickrvent.async_setup_entry", return_value=True):
+        result = await hass.config_entries.flow.async_configure(
+            result["flow_id"], {"device": "test"}
+        )
+        await hass.async_block_till_done()
+    assert result["type"] == "create_entry"
+    assert result["data"]["host"] == "127.0.0.1"
+    assert result["data"]["port"] == trainer.port
+    assert result["data"]["serial"] == trainer.serial
+
+
+async def test_user_can_rescan(hass, trainer):
+    from custom_components.kickrvent.discovery import DiscoveredTrainer
+
+    device = DiscoveredTrainer("KICKR test", "127.0.0.1", trainer.port, trainer.serial)
+    with patch(
+        "custom_components.kickrvent.config_flow.async_discover", side_effect=[{}, {"test": device}]
+    ) as scan:
+        result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": SOURCE_USER})
+        result = await hass.config_entries.flow.async_configure(
+            result["flow_id"], {"device": "__rescan__"}
+        )
+        assert result["type"] == "form"
+        assert scan.call_count == 2
+    assert result["data_schema"]({"device": "test"}) == {"device": "test"}

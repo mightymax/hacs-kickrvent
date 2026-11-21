@@ -3,13 +3,10 @@
   "config": {
     "step": {
       "user": {
-        "title": "Verbind je KICKR",
-        "description": "Verbind via je lokale netwerk. Alleen uitlezen; de weerstand wordt niet gewijzigd. Serienummer is alleen nodig als de trainer dit niet zelf doorgeeft.",
+        "title": "Kies je KICKR",
+        "description": "Selecteer een gevonden trainer. Geen trainer gevonden? Zet hem aan, controleer het netwerk en kies opnieuw zoeken, of voer het adres handmatig in.",
         "data": {
-          "host": "IP-adres of hostnaam",
-          "port": "TCP-poort",
-          "name": "Naam",
-          "serial": "Serienummer (terugvaloptie)"
+          "device": "Trainer"
         }
       },
       "reconfigure": {
@@ -21,6 +18,20 @@
           "name": "Naam",
           "serial": "Serienummer (terugvaloptie)"
         }
+      },
+      "manual": {
+        "title": "Verbind je KICKR",
+        "description": "Verbind via je lokale netwerk. Alleen uitlezen; de weerstand wordt niet gewijzigd. Serienummer is alleen nodig als de trainer dit niet zelf doorgeeft.",
+        "data": {
+          "host": "IP-adres of hostnaam",
+          "port": "TCP-poort",
+          "name": "Naam",
+          "serial": "Serienummer (terugvaloptie)"
+        }
+      },
+      "discovery_confirm": {
+        "title": "Gevonden KICKR toevoegen",
+        "description": "Wil je {name} toevoegen? Het netwerkadres en serienummer zijn automatisch ingevuld."
       }
     },
     "error": {
@@ -65,6 +76,14 @@
       },
       "active": {
         "name": "Activiteit"
+      }
+    }
+  },
+  "selector": {
+    "trainer": {
+      "options": {
+        "__rescan__": "Opnieuw zoeken",
+        "__manual__": "Handmatig invoeren"
       }
     }
   }
